@@ -1,0 +1,42 @@
+{% extends "base.html" %}{% block content %}
+<main class="result">
+  <div class="tag">INTERVIEW COMPLETE</div>
+  <h1>Your Interview Result</h1>
+  <div class="card result-score">
+    <span>Average Score</span>
+    <strong>{{"%.1f"|format(result.score)}}<small>/10</small></strong>
+    <p>Target role: {{result.role}}</p>
+  </div>
+
+  {% if questions %}
+  <section class="card answer-feedback-section">
+    <div class="tag">AI FEEDBACK</div>
+    <h2>Question-wise Feedback</h2>
+    {% for q in questions %}
+    <article class="answer-feedback">
+      <div class="q-title"><b>Q{{loop.index}}.</b> {{q.question}}</div>
+      <div class="answer"><b>Your Answer:</b> {{q.user_answer or 'No answer provided.'}}</div>
+      <div class="ai-feedback"><b>AI Feedback:</b> {{q.ai_feedback}}</div>
+      <div class="learning-answer"><b>Recommended Answer / Key Points:</b><span>{{q.ideal_answer or "Review the concepts in the feedback and try answering again."}}</span></div>
+      <div class="mini-score">Score: {{"%.1f"|format(q.score)}}/10</div>
+    </article>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if session.get('user_id') %}
+  <section class="card feedback-form">
+    <div class="tag">YOUR FEEDBACK</div>
+    <h2>How was your interview practice?</h2>
+    <p>Help us improve the InterviewAI experience.</p>
+    <div class="stars" id="stars" role="radiogroup" aria-label="Rating">
+      {% for n in range(1,6) %}<button type="button" class="star" data-rating="{{n}}">★</button>{% endfor %}
+    </div>
+    <textarea id="appFeedback" placeholder="Tell us what you liked or what could be improved..."></textarea>
+    <button type="button" id="sendFeedback">Submit Feedback</button>
+    <div id="feedbackMessage" class="feedback-message hidden"></div>
+  </section>
+  {% endif %}
+
+  <a class="button" href="/">Practice Again</a>
+</main>{% endblock %}

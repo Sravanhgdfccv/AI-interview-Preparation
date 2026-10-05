@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<main class="auth card"><div class="tag">ADMIN ACCESS</div><h1>Admin Login</h1>
+<p>Track students, monitor interview activity, and create new practice tests.</p>
+<form method="post"><label>Email</label><input type="email" name="email" placeholder="Admin email" required><label>Password</label><input type="password" name="password" placeholder="Admin password" required><button>Login as Admin</button></form>
+<p class="api-note">Default development credentials are documented in README. Change them using ADMIN_EMAIL and ADMIN_PASSWORD in .env before deployment.</p></main>{% endblock %}

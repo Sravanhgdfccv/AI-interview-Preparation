@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<main class="interview"><div class="interview-head"><div><div class="tag">LIVE INTERVIEW</div><h1>{{data.role}}</h1><p>{{data.type}} · {{data.difficulty}} · {{data.experience}}</p></div><div id="counter">Question 1 / {{data.questions|length}}</div></div>
+<div class="card question-card"><div class="progress"><i id="bar"></i></div><h2 id="question"></h2><textarea id="answer" placeholder="Type your answer here..."></textarea><button id="submit">Submit Answer</button><div id="feedback" class="feedback hidden"></div><div id="learningAnswer" class="learning-answer hidden"></div><button id="next" class="secondary hidden">Next Question →</button></div>
+<form id="finish" method="post" action="/finish"><input type="hidden" name="score" id="finalScore"></form></main>
+<script>window.questions={{ data.questions|tojson }};</script>{% endblock %}

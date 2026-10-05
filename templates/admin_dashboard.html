@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block content %}
+<main class="dashboard admin-dashboard">
+  <div class="dashboard-head"><div><div class="tag">ADMIN CONTROL CENTER</div><h1>Student & Test Management</h1><p>Monitor student interview activity and create new AI practice tests.</p></div><a class="button small-button" href="/admin/tests/new">+ Add New Test</a></div>
+  <section class="stats-grid">
+    <div class="card stat"><span>Total Students</span><strong>{{total_students}}</strong></div>
+    <div class="card stat"><span>Total Interviews</span><strong>{{total_interviews}}</strong></div>
+    <div class="card stat"><span>Today's Interviews</span><strong>{{today_interviews}}</strong></div>
+    <div class="card stat"><span>Average Score</span><strong>{{"%.1f"|format(avg_score)}}/10</strong></div>
+  </section>
+  <section class="card table admin-table"><div class="section-title"><div><div class="tag">STUDENT TRACKING</div><h2>Students</h2></div></div>
+    <table><tr><th>Student</th><th>Email</th><th>Total Interviews</th><th>Today's Interviews</th><th>7-Day Activity</th><th>Average Score</th><th>Progress</th></tr>
+    {% for s in students %}<tr><td><b>{{s.name}}</b></td><td>{{s.email}}</td><td>{{s.total_interviews}}</td><td>{{s.today_interviews or 0}}</td><td>{{s.week_interviews or 0}}</td><td>{{"%.1f"|format(s.avg_score)}}/10</td><td><div class="progress-cell"><div class="mini-progress"><i style="width:{{100 if (s.today_interviews or 0)>0 else 0}}%"></i></div><span>{{"Active today" if (s.today_interviews or 0)>0 else "Not started today"}}</span></div></td></tr>
+    {% else %}<tr><td colspan="7">No students registered yet.</td></tr>{% endfor %}</table>
+  </section>
+  <section class="card table"><div class="section-title"><div><div class="tag">TEST MANAGEMENT</div><h2>Available Tests</h2></div><a href="/admin/tests/new">Create Test</a></div>
+    <table><tr><th>Test</th><th>Role</th><th>Type</th><th>Difficulty</th><th>Questions</th><th>Created</th></tr>
+    {% for t in tests %}<tr><td><b>{{t.title}}</b></td><td>{{t.job_role}}</td><td>{{t.interview_type}}</td><td>{{t.difficulty}}</td><td>{{t.question_count}}</td><td>{{t.created_at}}</td></tr>{% else %}<tr><td colspan="6">No tests created yet.</td></tr>{% endfor %}</table>
+  </section>
+</main>{% endblock %}

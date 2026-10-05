@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<main class="auth card wide-auth"><div class="tag">TEST MANAGEMENT</div><h1>Add New Test</h1><p>Create a reusable AI-generated interview test that students can access from the Tests page.</p>
+<form method="post"><label>Test Title</label><input name="title" placeholder="e.g. Java Developer Placement Test" required>
+<label>Job Role</label><input name="job_role" placeholder="e.g. Java Developer" required>
+<label>Experience</label><select name="experience"><option>Fresher</option><option>1–2 Years</option><option>3–5 Years</option></select>
+<label>Difficulty</label><select name="difficulty"><option>Easy</option><option>Medium</option><option>Hard</option></select>
+<label>Interview Type</label><select name="interview_type"><option>Technical</option><option>HR</option><option>Mixed</option></select>
+<label>Number of Questions</label><select name="question_count"><option value="3">3 Questions</option><option value="5" selected>5 Questions</option><option value="10">10 Questions</option><option value="15">15 Questions</option><option value="20">20 Questions</option></select>
+<button>Create AI Test</button></form></main>{% endblock %}

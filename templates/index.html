@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block content %}
+<main class="home"><section><div class="tag">GENERATIVE AI INTERVIEW COACH</div><h1>Practice interviews.<br><span>Improve faster.</span></h1>
+<p>Generate fresh role-specific questions, answer them, receive AI feedback and recommended answers, and track your daily interview progress.</p></section>
+<section class="card setup"><h2>Start Interview</h2><form method="post" action="/start">
+<label>Job Role</label><input name="job_role" placeholder="e.g. Java Developer" required>
+<label>Experience</label><select name="experience"><option>Fresher</option><option>1–2 Years</option><option>3–5 Years</option></select>
+<label>Difficulty</label><select name="difficulty"><option>Easy</option><option>Medium</option><option>Hard</option></select>
+<label>Interview Type</label><select name="interview_type"><option>Technical</option><option>HR</option><option>Mixed</option></select>
+<label>Number of Questions</label><select name="question_count" required><option value="3">3 Questions</option><option value="5" selected>5 Questions</option><option value="10">10 Questions</option><option value="15">15 Questions</option><option value="20">20 Questions</option></select>
+<button>Generate Interview →</button></form></section></main>
+<section class="features"><div><b>01</b><h3>AI Questions</h3><p>Questions are generated for your selected role and difficulty.</p></div>
+<div><b>02</b><h3>AI Feedback</h3><p>Receive a score and constructive feedback after each answer.</p></div>
+<div><b>03</b><h3>Fresh Every Session</h3><p>Select the number of questions and get a different question set in each interview session.</p></div></section>{% endblock %}
